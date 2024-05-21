@@ -1,0 +1,46 @@
+
+CREATE TABLE STUDENTS(Student_id INT PRIMARY KEY,
+First_name VARCHAR(30),
+Last_name VARCHAR(30),
+Email VARCHAR(30),
+Contact_no INT,
+Batch_id INT,
+Class_id INT,
+FOREIGN KEY(Batch_id) references BATCH(Batch_id),
+FOREIGN KEY(Class_id) references CLASS(Class_id)
+);
+
+CREATE TABLE BATCH(
+Batch_id INT PRIMARY KEY,
+Batch_name VARCHAR(30),
+Batch_period_time VARCHAR(30)
+);
+
+CREATE TABLE CLASS(
+Class_id INT PRIMARY KEY,
+Class_name VARCHAR(30),
+Class_topic VARCHAR(30),
+Class_period_time VARCHAR(30),
+Class_day INT,
+Batch_id INT,
+Mentor_id INT,
+FOREIGN KEY(Batch_id) references BATCH(Batch_id),
+FOREIGN KEY(Mentor_id) references MENTOR(Mentor_id)
+);
+
+CREATE TABLE MENTOR(
+Mentor_id INT PRIMARY KEY,
+Mentor_name VARCHAR(30),
+Mentor_period_time VARCHAR(30),
+Batch_id INT,
+FOREIGN KEY(Batch_id) references BATCH(Batch_id)
+);
+
+CREATE TABLE ATTENDENCE(
+ATTENDENCE_id INT PRIMARY KEY,
+ATTENDENCE_percent float,
+Student_id INT,
+Batch_id INT,
+FOREIGN KEY(Batch_id) references BATCH(Batch_id),
+FOREIGN KEY(Student_id) references STUDENTS(Student_id)
+);
