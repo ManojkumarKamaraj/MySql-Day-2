@@ -1,19 +1,15 @@
-
-CREATE TABLE STUDENTS(Student_id INT PRIMARY KEY,
-First_name VARCHAR(30),
-Last_name VARCHAR(30),
-Email VARCHAR(30),
-Contact_no INT,
-Batch_id INT,
-Class_id INT,
-FOREIGN KEY(Batch_id) references BATCH(Batch_id),
-FOREIGN KEY(Class_id) references CLASS(Class_id)
-);
-
 CREATE TABLE BATCH(
 Batch_id INT PRIMARY KEY,
 Batch_name VARCHAR(30),
 Batch_period_time VARCHAR(30)
+);
+
+CREATE TABLE MENTOR(
+Mentor_id INT PRIMARY KEY,
+Mentor_name VARCHAR(30),
+Mentor_period_time VARCHAR(30),
+Batch_id INT,
+FOREIGN KEY(Batch_id) references BATCH(Batch_id)
 );
 
 CREATE TABLE CLASS(
@@ -28,12 +24,15 @@ FOREIGN KEY(Batch_id) references BATCH(Batch_id),
 FOREIGN KEY(Mentor_id) references MENTOR(Mentor_id)
 );
 
-CREATE TABLE MENTOR(
-Mentor_id INT PRIMARY KEY,
-Mentor_name VARCHAR(30),
-Mentor_period_time VARCHAR(30),
+CREATE TABLE STUDENTS(Student_id INT PRIMARY KEY,
+First_name VARCHAR(30),
+Last_name VARCHAR(30),
+Email VARCHAR(30),
+Contact_no INT,
 Batch_id INT,
-FOREIGN KEY(Batch_id) references BATCH(Batch_id)
+Class_id INT,
+FOREIGN KEY(Batch_id) references BATCH(Batch_id),
+FOREIGN KEY(Class_id) references CLASS(Class_id)
 );
 
 CREATE TABLE ATTENDENCE(
